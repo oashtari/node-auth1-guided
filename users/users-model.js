@@ -21,8 +21,11 @@ async function add(user) {
   return findById(id);
 }
 
+// used to have password as 3rd item being sent back in .select
+// but we don't want that, or else we're exposing the password
 function findById(id) {
   return db("users")
     .where({ id })
+    .select('id', 'username')
     .first();
 }
